@@ -63,36 +63,31 @@ The pipeline strictly adheres to the Medallion Architecture to ensure data quali
 │   └── Retail_Dashboard.pbix    # Final Power BI Dashboard
 └── README.md
 ````
-🚀 How to Run the Project
-Environment Setup:
 
-Provision an Azure SQL Database and execute the initial DDL/DML scripts to generate the dummy data.
+## 🚀 How to Run the Project
 
-Provision an Azure Storage Account, enabling Hierarchical Namespace (ADLS Gen2), and create the bronze, silver, and gold directory structure.
+**1. Environment Setup:**
+* Provision an Azure SQL Database and execute the initial DDL/DML scripts to generate the dummy data.
+* Provision an Azure Storage Account, enabling Hierarchical Namespace (ADLS Gen2), and create the `bronze`, `silver`, and `gold` directory structure.
 
-Orchestration:
+**2. Orchestration:**
+* Import the pipeline JSON into Azure Data Factory.
+* Configure the Linked Services for Azure SQL, the HTTP API, and ADLS Gen2.
+* Trigger the pipeline to populate the Bronze layer.
 
-Import the pipeline JSON into Azure Data Factory.
+**3. Data Transformation:**
+* Import the notebooks into Databricks.
+* Execute `01_mount_adls.py` to establish the connection with your Azure Storage.
+* Run the Silver and Gold notebooks sequentially to clean, transform, and aggregate the data.
 
-Configure the Linked Services for Azure SQL, the HTTP API, and ADLS Gen2.
+**4. Visualization:**
+* Open `Retail_Dashboard.pbix` in Power BI Desktop.
+* Refresh the data source to pull the latest Gold layer dataset.
 
-Trigger the pipeline to populate the Bronze layer.
+---
 
-Data Transformation:
+## 👨‍💻 Author
 
-Import the notebooks into Databricks.
-
-Execute 01_mount_adls.py to establish the connection with your Azure Storage.
-
-Run the Silver and Gold notebooks sequentially to clean, transform, and aggregate the data.
-
-Visualization:
-
-Open Retail_Dashboard.pbix in Power BI Desktop.
-
-Refresh the data source to pull the latest Gold layer dataset.
-
-👨‍💻 Author
-Marra Mohamed
-Data Analyst & Data Engineer
-LinkedIn | Portfolio"# Data-Engineering-sur-Azure-avec-Databricks-et-Power-BI" 
+**Marra Mohamed**  
+*Data Analyst & Data Engineer*  
+[LinkedIn](#) | [Portfolio](#)

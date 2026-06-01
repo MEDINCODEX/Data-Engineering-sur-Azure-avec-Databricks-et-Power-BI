@@ -62,6 +62,7 @@ The pipeline strictly adheres to the Medallion Architecture to ensure data quali
 ├── powerbi/
 │   └── Retail_Dashboard.pbix    # Final Power BI Dashboard
 └── README.md
+````
 🚀 How to Run the Project
 Environment Setup:
 

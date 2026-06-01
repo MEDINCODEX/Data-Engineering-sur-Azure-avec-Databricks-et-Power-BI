@@ -90,4 +90,4 @@ The pipeline strictly adheres to the Medallion Architecture to ensure data quali
 
 **Marra Mohamed**  
 *Data Analyst & Data Engineer*  
-[LinkedIn](#) | [Portfolio](#)
+[LinkedIn](https://www.linkedin.com/in/marra-mohamed/) | [Portfolio](#)

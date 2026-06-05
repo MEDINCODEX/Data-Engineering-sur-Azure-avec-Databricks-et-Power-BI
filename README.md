@@ -48,50 +48,97 @@ The pipeline strictly adheres to the Medallion Architecture to ensure data quali
 ---
 
 ## 📂 Repository Structure
+Markdown
+# 🛒 Retail Analytics Data Lakehouse on Microsoft Azure
+
+![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![Apache Spark](https://img.shields.io/badge/apache%20spark-%23E25A1C.svg?style=for-the-badge&logo=apachespark&logoColor=white)
+![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=Databricks&logoColor=white)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+
+## 📌 Project Overview
+This repository contains an end-to-end Data Engineering project implementing a modern **Data Lakehouse** using the **Medallion Architecture (Bronze, Silver, Gold)**. 
+
+The goal of this project is to extract highly normalized transactional and dimensional data from heterogeneous sources (Azure SQL DB and REST APIs), centralize it in a Data Lake, and transform it into a denormalized, business-ready format for Business Intelligence (BI) reporting.
+
+## 🏗️ Architecture & Tech Stack
+
+*(Insert your architecture diagram here. You can upload an image to your `Assets` folder and link it like this: `![Architecture Diagram](Assets/architecture.png)`)*
+
+* **Source Systems:** Azure SQL Database (OLTP), REST API (JSON).
+* **Orchestration (ETL/ELT):** Azure Data Factory (ADF).
+* **Storage:** Azure Data Lake Storage Gen2 (ADLS Gen2).
+* **Compute & Transformation:** Azure Databricks, PySpark.
+* **Data Format:** Delta / Parquet.
+
+## 📂 Repository Structure
 
 ```text
-├── databricks/
-│   ├── 01_mount_adls.py         # Script to mount ADLS Gen2 to Databricks
-│   ├── 02_silver_layer.ipynb    # Cleaning, joining, and Delta table creation
-│   └── 03_gold_layer.ipynb      # Business aggregations and final dataset generation
-├── adf_pipelines/
-│   └── Ingestion_Pipeline.json  # Exported ARM template/JSON for Data Factory
-├── docs/
-│   ├── architecture_diagram.png # Visual representation of the Azure pipeline
-│   └── Technical_Report.pdf     # Detailed documentation of services and end-to-end flow
-├── powerbi/
-│   └── Retail_Dashboard.pbix    # Final Power BI Dashboard
-└── README.md
+├── Assets/                                      # Diagrams, screenshots, and architecture images
+├── .env                                         # Environment variables (Storage Keys - GitIgnored)
+├── .gitignore                                   # Ignored files to maintain repository security
+├── Azure Data Lakehouse Implementation.pdf      # Comprehensive technical thesis & project report
+├── README.md                                    # Project documentation
+└── Retail Analytics with azure.ipynb            # Databricks PySpark notebook (Silver & Gold logic)
+⚙️ Data Pipeline Workflow (Medallion Architecture)
+🥉 1. Bronze Layer (Raw Data Ingestion)
+Orchestrated entirely via Azure Data Factory.
+
+Parallel Execution: Dimension tables (Products, Stores, Customers) are ingested in parallel to optimize DIU (Data Integration Units) usage and reduce latency.
+
+Sequential Dependency: The Fact table (Transactions) is only ingested upon the successful completion of the dimension pipelines to ensure strict referential integrity.
+
+Data is stored in ADLS Gen2 exactly as it appears in the source systems to allow for historical replayability.
+
+🥈 2. Silver Layer (Cleansed & Conformed Data)
+Processed using Databricks (PySpark).
+
+Applied strict Data Quality rules: Deduplication (.dropDuplicates()), Null handling (.dropna()), and Data Type Casting.
+
+Enforced Delta Lake Schema Enforcement (overwriteSchema) to protect downstream processes from upstream schema drift.
+
+Added auditing metadata (e.g., ingestion timestamps).
+
+Cleaned data is written back to the silver folder in ADLS Gen2 as Parquet/Delta files.
+
+🥇 3. Gold Layer (Business Aggregations)
+Designed for Analytics and BI consumption.
+
+KPI Generation: Joined Fact and Dimension tables to calculate business metrics (e.g., total revenue and units sold per product category).
+
+One Big Table (OBT): Created a denormalized flat table (gold_sales_analytics) to maximize query performance for BI tools like Power BI, preventing the BI engine from executing heavy runtime joins.
+
+Final models are saved to the gold folder in ADLS Gen2.
+
 🚀 How to Run the Project
+Clone the repository:
+
+Bash
+git clone [https://github.com/yourusername/retail-data-lakehouse-azure.git](https://github.com/yourusername/retail-data-lakehouse-azure.git)
 Environment Setup:
 
-Provision an Azure SQL Database and execute the initial DDL/DML scripts to generate the dummy data.
+Create an Azure Storage Account (ADLS Gen2).
 
-Provision an Azure Storage Account, enabling Hierarchical Namespace (ADLS Gen2), and create the bronze, silver, and gold directory structure.
+Update the .env file with your specific STORAGE_ACCOUNT_NAME, CONTAINER_NAME, and STORAGE_ACCOUNT_KEY. (Note: Never commit your .env file).
 
-Orchestration:
+Databricks Execution:
 
-Import the pipeline JSON into Azure Data Factory.
+Import Retail Analytics with azure.ipynb into your Databricks workspace.
 
-Configure the Linked Services for Azure SQL, the HTTP API, and ADLS Gen2.
+Attach it to a compute cluster and Run All cells to process the data from Bronze ➔ Silver ➔ Gold.
 
-Trigger the pipeline to populate the Bronze layer.
+📄 Detailed Report
+For a deep dive into the architectural decisions, pipeline configurations, and linked services setup, please refer to the attached Azure Data Lakehouse Implementation.pdf included in this repository.
 
-Data Transformation:
+Developed by Mohamed Marra | LinkedIn Profile
 
-Import the notebooks into Databricks.
 
-Execute 01_mount_adls.py to establish the connection with your Azure Storage.
+***
 
-Run the Silver and Gold notebooks sequentially to clean, transform, and aggregate the data.
+### 💡 Final Steps for you:
+1. Copy the Markdown above into your `README.md`.
+2. Replace `yourusername` and `yourprofile` in the links near the bottom with your actual GitHub username and LinkedIn URL.
+3. If you have a nice picture of your ADF pipeline or an architecture diagram, put it in the `Assets` folder and uncomment the image link in the README.
+4. Commit and push! 
 
-Visualization:
-
-Open Retail_Dashboard.pbix in Power BI Desktop.
-
-Refresh the data source to pull the latest Gold layer dataset.
-
-👨‍💻 Author
-Marra Mohamed
-Data Analyst & Data Engineer
-LinkedIn | Portfolio"# Data-Engineering-sur-Azure-avec-Databricks-et-Power-BI" 
+This repository is now officially a top-tier showcase of your Data Engineering skills. Excellent work getting this all put together! Ready to tackle the next project for the portfolio?

@@ -62,32 +62,36 @@ The pipeline strictly adheres to the Medallion Architecture to ensure data quali
 ├── powerbi/
 │   └── Retail_Dashboard.pbix    # Final Power BI Dashboard
 └── README.md
-````
+🚀 How to Run the Project
+Environment Setup:
 
-## 🚀 How to Run the Project
+Provision an Azure SQL Database and execute the initial DDL/DML scripts to generate the dummy data.
 
-**1. Environment Setup:**
-* Provision an Azure SQL Database and execute the initial DDL/DML scripts to generate the dummy data.
-* Provision an Azure Storage Account, enabling Hierarchical Namespace (ADLS Gen2), and create the `bronze`, `silver`, and `gold` directory structure.
+Provision an Azure Storage Account, enabling Hierarchical Namespace (ADLS Gen2), and create the bronze, silver, and gold directory structure.
 
-**2. Orchestration:**
-* Import the pipeline JSON into Azure Data Factory.
-* Configure the Linked Services for Azure SQL, the HTTP API, and ADLS Gen2.
-* Trigger the pipeline to populate the Bronze layer.
+Orchestration:
 
-**3. Data Transformation:**
-* Import the notebooks into Databricks.
-* Execute `01_mount_adls.py` to establish the connection with your Azure Storage.
-* Run the Silver and Gold notebooks sequentially to clean, transform, and aggregate the data.
+Import the pipeline JSON into Azure Data Factory.
 
-**4. Visualization:**
-* Open `Retail_Dashboard.pbix` in Power BI Desktop.
-* Refresh the data source to pull the latest Gold layer dataset.
+Configure the Linked Services for Azure SQL, the HTTP API, and ADLS Gen2.
 
----
+Trigger the pipeline to populate the Bronze layer.
 
-## 👨‍💻 Author
+Data Transformation:
 
-**Marra Mohamed**  
-*Data Analyst & Data Engineer*  
-[LinkedIn](https://www.linkedin.com/in/marra-mohamed/) | [Portfolio](#)
+Import the notebooks into Databricks.
+
+Execute 01_mount_adls.py to establish the connection with your Azure Storage.
+
+Run the Silver and Gold notebooks sequentially to clean, transform, and aggregate the data.
+
+Visualization:
+
+Open Retail_Dashboard.pbix in Power BI Desktop.
+
+Refresh the data source to pull the latest Gold layer dataset.
+
+👨‍💻 Author
+Marra Mohamed
+Data Analyst & Data Engineer
+LinkedIn | Portfolio"# Data-Engineering-sur-Azure-avec-Databricks-et-Power-BI" 

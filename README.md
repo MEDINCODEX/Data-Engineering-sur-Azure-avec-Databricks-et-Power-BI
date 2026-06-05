@@ -1,5 +1,9 @@
-# 🛒 Retail Data Platform Modernization: End-to-End Azure Data Engineering Pipeline
+# 🛒 Retail Analytics Data Lakehouse on Microsoft Azure
 
+![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
+![Apache Spark](https://img.shields.io/badge/apache%20spark-%23E25A1C.svg?style=for-the-badge&logo=apachespark&logoColor=white)
+![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=Databricks&logoColor=white)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ## 📌 Project Overview
 In today’s retail landscape, fragmented data across IT, marketing, and finance departments often leads to slow, inconsistent, and error-prone decision-making. This project addresses these challenges by implementing a highly automated, end-to-end cloud data architecture on **Microsoft Azure**. 
 
@@ -47,14 +51,7 @@ The pipeline strictly adheres to the Medallion Architecture to ensure data quali
 
 ---
 
-## 📂 Repository Structure
-Markdown
-# 🛒 Retail Analytics Data Lakehouse on Microsoft Azure
 
-![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
-![Apache Spark](https://img.shields.io/badge/apache%20spark-%23E25A1C.svg?style=for-the-badge&logo=apachespark&logoColor=white)
-![Databricks](https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=Databricks&logoColor=white)
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 ## 📌 Project Overview
 This repository contains an end-to-end Data Engineering project implementing a modern **Data Lakehouse** using the **Medallion Architecture (Bronze, Silver, Gold)**. 
